@@ -111,8 +111,8 @@ elif current_tab == "🗺️ Geospatial":
     with col1:
         uploaded_file = st.file_uploader(
             "Upload Geospatial Data",
-            type=["geojson", "shp"],
-            help="Supported formats: GeoJSON, ESRI Shapefile"
+            type=["geojson", "zip"],
+            help="Supported formats: GeoJSON, Zipped Shapefile (.zip)"
         )
         
     with col2:
