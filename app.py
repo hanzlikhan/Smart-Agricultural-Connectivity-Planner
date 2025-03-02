@@ -36,12 +36,6 @@ if current_tab == "📚 Instructions":
     ---
 
     ## 🚀 **How to Use This App**
-
-    ### 1. **Set Up**
-    - Add your AIMLAPI key to the `.env` file.
-    - Install dependencies: `pip install -r requirements.txt`.
-    - Run the app: `streamlit run app.py`.
-
     ### 2. **Navigation**
     - Use the **sidebar** to switch between different features.
     - Each tab provides a unique functionality to help you plan and optimize connectivity.
@@ -95,7 +89,7 @@ if current_tab == "📚 Instructions":
 
     ## 📥 **Sample Data**
     Download sample GeoJSON files to test the app:
-    [Sample Data Download](https://example.com/sample_data.zip)
+    [Sample Data Download](Data/eg_shp.zip)
 
     ---
 
@@ -268,3 +262,9 @@ elif current_tab == "📊 Dashboard":
     st.area_chart(roi_data, x="Year", y="Cumulative ROI")
 # if __name__ == "__main__":
     # st.session_state.update(st.session_state)
+    
+# Footer for every tab
+st.markdown("---")
+st.markdown("### 🛠️ **Developed By**")
+st.markdown("- **Muhammad Hanzala**: [khangormani79@gmail.com](mailto:khangormani79@gmail.com)")
+st.markdown("- **Amira Sayed**: [amira.sayedza@gmail.com](mailto:amira.sayedza@gmail.com)")
