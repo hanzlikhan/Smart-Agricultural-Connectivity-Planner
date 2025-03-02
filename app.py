@@ -89,7 +89,7 @@ if current_tab == "📚 Instructions":
 
     ## 📥 **Sample Data**
     Download sample GeoJSON files to test the app:
-    [Sample Data Download](Data/eg_shp.zip)
+    [Sample Data Download](https://github.com/hanzlikhan/Smart-Agricultural-Connectivity-Planner/tree/new-feature/Data)
 
     ---
 
