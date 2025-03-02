@@ -3,6 +3,7 @@ from utils.geo_analysis import TerrainAnalyzer
 from utils.network_models import NetworkOptimizer
 from utils.cost_simulator import CostSimulator
 import folium
+import plotly.express as px
 from streamlit_folium import folium_static
 
 # Initialize core components
