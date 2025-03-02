@@ -1,11 +1,9 @@
-import geopandas as gpd
 import folium
-import streamlit as st
-from shapely.geometry import shape
+import geopandas as gpd
 
 class TerrainAnalyzer:
-    def __init__(self, geospatial_file):
-        self.gdf = gpd.read_file(geospatial_file)
+    def __init__(self, geojson_path):
+        self.gdf = gpd.read_file(geojson_path)
         self.center = self._calculate_center()
         
     def _calculate_center(self):
@@ -15,8 +13,14 @@ class TerrainAnalyzer:
     def generate_map(self, vegetation_threshold=0.5):
         m = folium.Map(location=self.center, zoom_start=12)
         
-        # Add terrain layers
-        folium.TileLayer('Stamen Terrain').add_to(m)
+        # Add Stamen Terrain tiles with attribution
+        folium.TileLayer(
+            tiles='Stamen Terrain',
+            attr='Map tiles by <a href="https://stamen.com">Stamen Design</a>, under <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="https://openstreetmap.org">OpenStreetMap</a>, under <a href="https://www.openstreetmap.org/copyright">ODbL</a>.',
+            name='Stamen Terrain'
+        ).add_to(m)
+        
+        # Add GeoJSON layer
         folium.GeoJson(
             self.gdf,
             style_function=lambda feature: {
