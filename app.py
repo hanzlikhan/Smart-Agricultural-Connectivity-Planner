@@ -121,18 +121,21 @@ elif current_tab == "🗺️ Geospatial":
         elevation_range = st.slider("Elevation Range (m)", 0, 2000, (0, 1000))
     
     if uploaded_file:
-        analyzer = TerrainAnalyzer(uploaded_file)
-        with st.spinner("Processing geospatial data..."):
-            st.session_state.map_data = analyzer.generate_map(veg_threshold)
-            stats = analyzer.get_statistics()
-            
-            st.subheader("Terrain Visualization")
-            folium_static(st.session_state.map_data)
-            
-            cols = st.columns(3)
-            cols[0].metric("Total Area", f"{stats['area']} km²")
-            cols[1].metric("Avg Elevation", f"{stats['elevation']} m")
-            cols[2].metric("Vegetation Cover", f"{stats['vegetation']}%")
+        try:
+            analyzer = TerrainAnalyzer(uploaded_file)
+            with st.spinner("Processing geospatial data..."):
+                st.session_state.map_data = analyzer.generate_map(veg_threshold)
+                stats = analyzer.get_statistics()
+                
+                st.subheader("Terrain Visualization")
+                folium_static(st.session_state.map_data)
+                
+                cols = st.columns(3)
+                cols[0].metric("Total Area", f"{stats['area']} km²")
+                cols[1].metric("Avg Elevation", f"{stats['elevation']} m")
+                cols[2].metric("Vegetation Cover", f"{stats['vegetation']}%")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 # Tab 3: Network Design
 elif current_tab == "📡 Network":
     st.header("Network Design Studio")

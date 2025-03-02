@@ -1,9 +1,26 @@
 import folium
 import geopandas as gpd
+import tempfile
+import os
+import streamlit as st
 
 class TerrainAnalyzer:
-    def __init__(self, geojson_path):
-        self.gdf = gpd.read_file(geojson_path)
+    def __init__(self, uploaded_file):
+        # Save the uploaded file to a temporary file
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.geojson') as tmp_file:
+            tmp_file.write(uploaded_file.getvalue())
+            tmp_file_path = tmp_file.name
+
+        # Read the file using geopandas
+        try:
+            self.gdf = gpd.read_file(tmp_file_path)
+        except Exception as e:
+            st.error(f"Error reading file: {e}")
+            raise
+        finally:
+            # Clean up the temporary file
+            os.unlink(tmp_file_path)
+
         self.center = self._calculate_center()
         
     def _calculate_center(self):
