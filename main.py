@@ -28,8 +28,11 @@ current_tab = st.sidebar.radio("Navigation", tabs)
 # Tab 1: Instructions
 if current_tab == "📚 Instructions":
     st.markdown("# 🌾 Smart Agricultural Connectivity Planner")
-    with open("assets/instructions.md") as f:
-        st.markdown(f.read())
+    try:
+        with open("assets/instructions.md", "r", encoding="utf-8") as f:
+            st.markdown(f.read())
+    except Exception as e:
+        st.error(f"Error reading instructions file: {e}")
     
 # Tab 2: Geospatial Analysis
 elif current_tab == "🗺️ Geospatial":
@@ -66,17 +69,20 @@ elif current_tab == "🗺️ Geospatial":
 elif current_tab == "📡 Network":
     st.header("Network Design Studio")
     
-    with st.form("network_form"):
+    # Use a unique key for the form to avoid conflicts
+    with st.form(key="network_form"):
         col1, col2 = st.columns(2)
         with col1:
-            budget = st.number_input("Budget (USD)", 1000, 1000000, 5000)
-            tech_type = st.selectbox("Technology", ["LoRaWAN", "5G", "Satellite", "Mesh"])
+            budget = st.number_input("Budget (USD)", 1000, 1000000, 5000, key="budget")
+            tech_type = st.selectbox("Technology", ["LoRaWAN", "5G", "Satellite", "Mesh"], key="tech_type")
             
         with col2:
-            model_choice = st.selectbox("AI Model", ["MiniMax-Text-01", "gpt-4.5-preview"])
-            terrain_type = st.selectbox("Terrain Complexity", ["Simple", "Moderate", "Complex"])
+            model_choice = st.selectbox("AI Model", ["MiniMax-Text-01", "gpt-4.5-preview"], key="model_choice")
+            terrain_type = st.selectbox("Terrain Complexity", ["Simple", "Moderate", "Complex"], key="terrain_type")
         
-        if st.form_submit_button("Generate Plan"):
+        submitted = st.form_submit_button("Generate Plan")
+        
+        if submitted:
             with st.spinner("Creating optimal network configuration..."):
                 result = optimizer.recommend_network(budget, tech_type, model_choice)
                 
@@ -89,4 +95,5 @@ elif current_tab == "📡 Network":
 # Other tabs follow similar patterns...
 
 if __name__ == "__main__":
-    st.session_state.update(st.session_state)
+    # No need to update st.session_state here
+    pass
