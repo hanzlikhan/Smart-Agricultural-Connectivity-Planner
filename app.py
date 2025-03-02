@@ -39,7 +39,7 @@ if current_tab == "📚 Instructions":
     ### 1. **Set Up**
     - Add your AIMLAPI key to the `.env` file.
     - Install dependencies: `pip install -r requirements.txt`.
-    - Run the app: `streamlit run main.py`.
+    - Run the app: `streamlit run app.py`.
 
     ### 2. **Navigation**
     - Use the **sidebar** to switch between different features.
