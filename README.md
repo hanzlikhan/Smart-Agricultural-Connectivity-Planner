@@ -1,4 +1,4 @@
-# Smart Agricultural Connectivity Planner
+# Smart AI Agricultural Connectivity Planner
 
 ## Project Overview
 The Smart Agricultural Connectivity Planner is a project designed to leverage technology and data analytics to enhance decision-making in agricultural practices. The objective is to connect farmers with resources and insights to optimize their production processes, improve sustainability, and promote efficiency in agricultural markets.
