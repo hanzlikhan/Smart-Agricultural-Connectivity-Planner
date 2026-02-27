@@ -9,7 +9,7 @@ The Smart Agricultural Connectivity Planner is a project designed to leverage te
 - **Resource management**: Helps users manage agricultural resources effectively.
 - **Connectivity options**: Facilitates communication between farmers and experts.
 
-## Installation Instructions
+## Installation Instructions in detail 
 1. Clone the repository:
    
    ```bash
